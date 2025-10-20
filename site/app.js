@@ -33,6 +33,9 @@ document.querySelectorAll('.stat-card, .problem-card, .model-card, .investment-c
 // Contact form submission (local testing)
 const contactForm = document.getElementById('contact-form');
 const contactStatus = document.getElementById('contact-status');
+// Read API base from meta tag (allows easy swapping after deploy)
+const metaApiBase = document.querySelector('meta[name="api-base"]');
+const API_BASE = (metaApiBase && metaApiBase.getAttribute('content')) || 'https://pmpvr-api.onrender.com';
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -40,7 +43,7 @@ if (contactForm) {
         const data = new FormData(contactForm);
         const payload = Object.fromEntries(data.entries());
         try {
-            const res = await fetch('https://pmpvr-api.onrender.com/contact', {
+            const res = await fetch(API_BASE + '/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -68,7 +71,7 @@ if (newsletterForm) {
         const data = new FormData(newsletterForm);
         const payload = Object.fromEntries(data.entries());
         try {
-            const res = await fetch('https://pmpvr-api.onrender.com/newsletter', {
+            const res = await fetch(API_BASE + '/newsletter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
