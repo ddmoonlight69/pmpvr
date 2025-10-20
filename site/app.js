@@ -40,7 +40,7 @@ if (contactForm) {
         const data = new FormData(contactForm);
         const payload = Object.fromEntries(data.entries());
         try {
-            const res = await fetch('http://localhost:4000/contact', {
+            const res = await fetch('https://pmpvr-api.onrender.com/contact', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
@@ -68,7 +68,7 @@ if (newsletterForm) {
         const data = new FormData(newsletterForm);
         const payload = Object.fromEntries(data.entries());
         try {
-            const res = await fetch('http://localhost:4000/newsletter', {
+            const res = await fetch('https://pmpvr-api.onrender.com/newsletter', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
