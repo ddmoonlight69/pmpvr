@@ -1,0 +1,12 @@
+{
+  "name": "pmpvr-lh",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "run": "node run-lighthouse.js"
+  },
+  "dependencies": {
+    "lighthouse": "^13.0.0",
+    "chrome-launcher": "^0.16.0"
+  }
+}

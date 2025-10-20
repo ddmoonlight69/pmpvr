@@ -1,0 +1,36 @@
+name: Run Lighthouse after deploy
+
+on:
+  workflow_run:
+    workflows: ["Deploy site to GitHub Pages"]
+    types:
+      - completed
+
+jobs:
+  lighthouse:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for GitHub Pages to be available
+        run: |
+          URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          echo "Checking $URL"
+          for i in {1..30}; do
+            status=$(curl -s -o /dev/null -w "%{http_code}" $URL || true)
+            if [ "$status" = "200" ]; then
+              echo "Site is up"; exit 0
+            fi
+            echo "Waiting for site... ($i)"; sleep 10
+          done
+          echo "Site did not become available"; exit 1
+
+      - name: Run Lighthouse
+        run: |
+          URL="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          npx -y lighthouse "$URL" --output=json --output=html --output-path=./lighthouse-report/report --only-categories=performance,accessibility,best-practices,seo --chrome-flags='--headless=new --no-sandbox'
+
+      - name: Upload Lighthouse reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: ./lighthouse-report/

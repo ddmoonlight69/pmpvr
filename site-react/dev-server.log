@@ -1,0 +1,15 @@
+nohup: ignoring input
+
+> memoryverse-react@0.1.0 dev
+> vite
+
+[33mThe CJS build of Vite's Node API is deprecated. See https://vitejs.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+Port 5173 is in use, trying another one...
+
+  VITE v5.3.0  ready in 376 ms
+
+  ➜  Local:   http://localhost:5174/
+  ➜  Network: use --host to expose
+1:58:55 PM [vite] vite.config.js changed, restarting server...
+1:58:55 PM [vite] server restarted.
+1:58:56 PM [vite] page reload index.html

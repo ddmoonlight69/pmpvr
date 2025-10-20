@@ -1,0 +1,5 @@
+:root{--accent:#667eea}
+body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#222}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.rv-header{background:linear-gradient(135deg,var(--accent),#764ba2);color:#fff;padding:1rem}
+.hero{padding:4rem 0;text-align:center}
