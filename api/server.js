@@ -35,4 +35,7 @@ app.post('/newsletter', (req, res) => {
 app.get('/_debug/contacts', (req, res) => res.json({ contacts }));
 app.get('/_debug/subscribers', (req, res) => res.json({ subscribers }));
 
+// health check for containers / platforms
+app.get('/health', (req, res) => res.json({ ok: true, uptime: process.uptime() }));
+
 app.listen(port, () => console.log(`pmpvr API listening on http://localhost:${port}`));
